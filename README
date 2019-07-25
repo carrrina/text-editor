@@ -1,14 +1,11 @@
-Cerinta 1
+Minimal text editor written in C
 
-	Pentru citirea textului am folosit o lista simplu inlantuita cu urmatoarele campuri: unul care retine o linie de text, unul de next care pointeaza catre urmatoarea linie de text si altul de next care pointeaza catre prima linie a textului de la urmatoarea comanda de insert. La fiecare comanda de insert, aceasta se retine intr-o stiva de comenzi, impreuna cu elementul ce contine ca valoare prima linie de text. Urmeaza citirea comenzilor si retinerea acestora in aceeasi stiva. Functia de citire a comenzilor returneaza o valoare mai mare ca 0 atunci cand nu s-a intalnit comanda quit.
-	Cursorul este reprezentat printr-o structura distincta cu doua campuri, unul pentru retinerea liniei si unul pentru retinerea pozitiei caracterului.
-	Textul citit se retine caracter cu caracter intr-o lista dublu inlantuita (Symbol).
-	Pentru backspace, se parcurge aceasta lista pana la pozitia de dinaintea cursorului si se sterge acel element.
-	Pentru delete, se parcurge lista pana la pozitia unde e cursorul si se sterge acel element.
-	Pentru delete line, se parcurge lista pana la primul caracter de pe linia unde e cursorul si sterg elemente pana la intalnirea '\n' sau pana la sfarsitul fisierului.
+It was tested in Linux terminal, with no gui.
 
-Cerinta 2
+Functionalities: insert text, backspace, delete (a line or a specific number of characters), go to character, go to line (for moving the cursor), undo, redo, quit & saving the text to a specific file.
 
-	Pe masura ce se citesc comenzile, daca se intalneste undo, comanda anterioara se pune intr-o coada. La intalnirea redo, acea comanda se pune inapoi in stiva de comenzi.
-
-La final, se apeleaza functia de executie efectiva a comenzilor.
+Data structures:
+- a simple linked list which holds a line of text
+- a stack for storing the user commands
+- a double linked list for storing the whole text, char by char
+- if the 'undo' command is met, the previous command is stored in a queue and, if the 'redo' command is then met, the command is put back in the stack
